@@ -57,8 +57,8 @@ def looking_for_open_ports():
     question = input("\nWhich ip do you wish to look for open ports? ")
     ipv4 = ipaddress.IPv4Address(question)
     if ipv4:
-        start_port = int(input("Provide first socket "))
-        end_port = int(input("Provide last socket "))
+        start_port = int(input("Provide first port: "))
+        end_port = int(input("Provide last port: "))
 
         results = queue.Queue()
 
