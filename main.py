@@ -76,7 +76,11 @@ def looking_for_open_ports():
             print("Port {} is open".format(port))
 
 
-input_ips()
-ip_range()
-looking_for_open_ports()
+def main():
+    input_ips()
+    ip_range()
+    looking_for_open_ports()
 
+
+if __name__ == "__main__":
+    main()
