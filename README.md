@@ -7,7 +7,7 @@ The program starts by prompting the user to enter a range of IP addresses and a 
 For each connection, the program sends a request to the specified IP address and port using the socket library's socket.connect_ex() method. If the connection is successful, the port is marked as open, and the program prints the IP address and port number to the console. If the connection is unsuccessful, the port is marked as closed.
 
 ## TODO:
-- [ ] Add support for scanning multiple ports simultaneously for each IP address to improve the efficiency of the program.
+- [ x ] Add support for scanning multiple ports simultaneously for each IP address to improve the efficiency of the program.
 
 - [ ] Implement an option to save the results of the port scan to a file for later analysis.
 
