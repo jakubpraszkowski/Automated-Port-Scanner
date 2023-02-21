@@ -1,4 +1,4 @@
-import socket
+from socket import socket, AF_INET, SOCK_STREAM
 
 
 class PortScanner:
@@ -8,7 +8,7 @@ class PortScanner:
         self.end_port = end_port
 
     def check_port(self, ip, port):
-        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        sock = socket(AF_INET, SOCK_STREAM)
         result = sock.connect_ex((ip, port))
 
         if result == 0:
@@ -19,8 +19,7 @@ class PortScanner:
     def scan_ports(self):
         for ipv4_address in self.ip_range:
             question = str(ipv4_address)
+            print(f"Ports for {question}:")
 
             for port in range(int(self.start_port), int(self.end_port) + 1):
                 self.check_port(question, port)
-
-        # return port
