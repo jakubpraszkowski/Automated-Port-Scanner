@@ -13,7 +13,7 @@ For each connection, the program sends a request to the specified IP address and
 
 - [ ] Improve error handling and provide more informative error messages to the user.
 
-- [ ] Add support for scanning UDP ports in addition to TCP ports.
+- [x] Add support for scanning UDP ports in addition to TCP ports.
 
 - [ ] Implement a user-friendly command-line interface with options for specifying the range of IP addresses and ports to scan, and other scan parameters.
 
