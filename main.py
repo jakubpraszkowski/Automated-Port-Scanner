@@ -1,5 +1,6 @@
 from IpRange import IpRange
 from PortScanner import PortScanner
+from ipaddress import ip_address
 
 
 def input_ips():

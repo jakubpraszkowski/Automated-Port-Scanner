@@ -10,6 +10,17 @@ class IpRange:
         self.results = []
         self.lock = Lock()
 
+    # def is_valid(self):
+    #     try:
+    #         ip_address(self.start_ip)
+    #         ip_address(self.end_ip)
+    #         return True
+    #
+    #     except ValueError:
+    #         print(f"{self.start_ip} or {self.end_ip} is not valid.")
+    #         return False
+
+
     def generate_ip_range(self):
         range_ip = []
 
