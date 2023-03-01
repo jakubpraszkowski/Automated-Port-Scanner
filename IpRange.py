@@ -1,11 +1,11 @@
-from ipaddress import IPv4Address
+from ipaddress import ip_address
 from multiprocessing import Process, Lock
 
 
 class IpRange:
     def __init__(self, start_ip, end_ip):
-        self.start_ip = IPv4Address(start_ip)
-        self.end_ip = IPv4Address(end_ip)
+        self.start_ip = ip_address(start_ip)
+        self.end_ip = ip_address(end_ip)
         self.range_ip = self.generate_ip_range()
         self.results = []
         self.lock = Lock()
@@ -14,7 +14,7 @@ class IpRange:
         range_ip = []
 
         for ip in range(int(self.start_ip), int(self.end_ip) + 1):
-            range_ip.append(IPv4Address(ip))
+            range_ip.append(ip_address(ip))
 
         return range_ip
 

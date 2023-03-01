@@ -17,8 +17,8 @@ class PortScanner:
         sock.close()
 
     def scan_ports(self):
-        for ipv4_address in self.ip_range:
-            question = str(ipv4_address)
+        for ip_address in self.ip_range:
+            question = str(ip_address)
             print(f"Ports for {question}:")
 
             for port in range(int(self.start_port), int(self.end_port) + 1):
