@@ -27,6 +27,7 @@ class PortScanner:
                 print("Connection interrupted")
 
             except error as e:
+                sock.close()
                 print("Connecting error:", e)
 
             else:
