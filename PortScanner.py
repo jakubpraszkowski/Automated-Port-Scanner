@@ -1,4 +1,4 @@
-from socket import socket, AF_INET, SOCK_STREAM, error, SOCK_DGRAM
+from socket import socket, AF_INET, SOCK_STREAM, error, getservbyport
 
 
 class PortScanner:
@@ -8,22 +8,31 @@ class PortScanner:
         self.end_port = end_port
 
     def check_port_protocol(self, ip, port):
-        sock = socket(AF_INET, SOCK_STREAM)
-
         try:
-            sock.connect((ip, port))
-            print(f"Port {port} is open and uses TCP protocol")
+            sock = socket(AF_INET, SOCK_STREAM, proto=0)
 
-        except error:
+        except error as e:
+            print("Error creating socket:", e)
+
+        else:
             try:
-                sock = socket(AF_INET, SOCK_DGRAM)
                 sock.connect((ip, port))
-                print(f"Port {port} is open and uses UDP protocol")
 
-            except error:
-                print(f"Cannot determine the network protocol of port: {port}.")
+            except TimeoutError:
+                sock.close()
+                print("Connection timed out")
 
-        finally:
+            except InterruptedError:
+                sock.close()
+                print("Connection interrupted")
+
+            except error as e:
+                print("Connecting error:", e)
+
+            else:
+                service = getservbyport(port, 'tcp')
+                print(f"Port: {port} / tcp / {service}")
+
             sock.close()
 
     def scan_ports(self):

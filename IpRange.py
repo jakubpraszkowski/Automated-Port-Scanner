@@ -4,22 +4,16 @@ from multiprocessing import Process, Lock
 
 class IpRange:
     def __init__(self, start_ip, end_ip):
-        self.start_ip = ip_address(start_ip)
-        self.end_ip = ip_address(end_ip)
+        try:
+            self.start_ip = ip_address(start_ip)
+            self.end_ip = ip_address(end_ip)
+
+        except ValueError:
+            raise ValueError
+
         self.range_ip = self.generate_ip_range()
         self.results = []
         self.lock = Lock()
-
-    # def is_valid(self):
-    #     try:
-    #         ip_address(self.start_ip)
-    #         ip_address(self.end_ip)
-    #         return True
-    #
-    #     except ValueError:
-    #         print(f"{self.start_ip} or {self.end_ip} is not valid.")
-    #         return False
-
 
     def generate_ip_range(self):
         range_ip = []
