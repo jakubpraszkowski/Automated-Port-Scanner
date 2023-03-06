@@ -1,4 +1,5 @@
 from socket import socket, AF_INET, SOCK_STREAM, error, getservbyport
+from Save import Save
 
 
 class PortScanner:
@@ -28,13 +29,15 @@ class PortScanner:
 
             except error as e:
                 sock.close()
-                print("Connecting error:", e)
 
             else:
                 service = getservbyport(port, 'tcp')
                 print(f"Port: {port} / tcp / {service}")
+                data = f"Port: {port} / tcp / {service}"
+                obj_save = Save(data)
+                obj_save.writing_to_txt()
 
-            sock.close()
+                sock.close()
 
     def scan_ports(self):
         for ip_address in self.ip_range:
