@@ -9,9 +9,9 @@ class Save:
     def writing_to_csv(self):
         now = datetime.now()
         formatted_date = now.strftime("%d-%m-%Y %H:%M:%S")
-        with open(f"Port Scanner {formatted_date}.csv", mode='w', newline='') as csvfile:
+        with open(f"Port Scanner {formatted_date}.csv", mode='a', newline='') as csvfile:
             write = writer(csvfile)
-            write.writerow(['Port', 'Protocol', 'Service'])
+            write.writerow(self.input_data + '\n')
 
     def writing_to_txt(self):
         now = datetime.now()

@@ -33,9 +33,9 @@ class PortScanner:
             else:
                 service = getservbyport(port, 'tcp')
                 print(f"Port: {port} / tcp / {service}")
-                data = f"Port: {port} / tcp / {service}"
-                obj_save = Save(data)
-                obj_save.writing_to_txt()
+                # data = f"Port: {port} / tcp / {service}"
+                # obj_save = Save(data)
+                # obj_save.writing_to_txt()
 
                 sock.close()
 
