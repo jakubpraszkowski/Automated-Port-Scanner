@@ -7,7 +7,7 @@ The program starts by prompting the user to enter a range of IP addresses and a 
 ## TODO:
 - [ ] Add support for scanning multiple ports simultaneously for each IP address to improve the efficiency of the program.
 
-- [ ] Implement an option to save the results of the port scan to a file for later analysis.
+- [x] Implement an option to save the results of the port scan to a file for later analysis.
 
 - [ ] **Ongoing** Improve error handling and provide more informative error messages to the user.
 
