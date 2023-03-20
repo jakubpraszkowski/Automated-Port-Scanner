@@ -1,4 +1,4 @@
-from socket import socket, AF_INET, SOCK_STREAM, error, getservbyport
+from socket import socket, AF_INET, SOCK_STREAM, error, getservbyport, SOCK_DGRAM
 from Save import Save
 
 
@@ -10,14 +10,14 @@ class PortScanner:
 
     def check_port_protocol(self, ip, port):
         try:
-            sock = socket(AF_INET, SOCK_STREAM, proto=0)
+            sock = socket(AF_INET, SOCK_STREAM)
 
         except error as e:
             print("Error creating socket:", e)
 
         else:
             try:
-                sock.connect((ip, port))
+                sock.connect_ex((ip, port))
 
             except TimeoutError:
                 sock.close()
@@ -31,13 +31,34 @@ class PortScanner:
                 sock.close()
 
             else:
-                service = getservbyport(port, 'tcp')
-                print(f"Port: {port} / tcp / {service}")
-                # data = f"Port: {port} / tcp / {service}"
-                # obj_save = Save(data)
-                # obj_save.writing_to_txt()
+                try:
+                    service = getservbyport(port, 'tcp')
+                    print(f"Port: {port} / tcp / {service}")
+                    sock.close()
 
-                sock.close()
+                except error as e:
+                    sock.close()
+
+                    try:
+                        sock = socket(AF_INET, SOCK_DGRAM)
+
+                    except error as e:
+                        print("Error creating socket:", e)
+
+                    else:
+                        try:
+                            sock.bind((ip, port))
+
+                        except error as e:
+                            sock.close()
+                            # print("Error binding socket:", e)
+
+                        else:
+                            try:
+                                service = getservbyport(port, 'udp')
+                                print(f"Port: {port} / udp / {service}")
+                            except error as e:
+                                sock.close()
 
     def scan_ports(self):
         for ip_address in self.ip_range:
