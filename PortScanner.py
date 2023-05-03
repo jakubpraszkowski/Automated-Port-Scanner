@@ -40,25 +40,19 @@ class PortScanner:
                     sock.close()
 
                     try:
-                        sock = socket(AF_INET, SOCK_DGRAM)
+                        service = getservbyport(port, 'tcp')
+                        print(f"Port: {port} / tcp / {service}")
+                        sock.close()
 
-                    except error as e:
-                        print("Error creating socket:", e)
-
-                    else:
+                    except error:
                         try:
-                            sock.bind((ip, port))
-
-                        except error as e:
+                            service = getservbyport(port, 'udp')
+                            print(f"Port: {port} / udp / {service}")
                             sock.close()
-                            # print("Error binding socket:", e)
 
-                        else:
-                            try:
-                                service = getservbyport(port, 'udp')
-                                print(f"Port: {port} / udp / {service}")
-                            except error as e:
-                                sock.close()
+                        except error:
+                            sock.close()
+
 
     def scan_ports(self):
         for ip_address in self.ip_range:
