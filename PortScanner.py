@@ -37,21 +37,13 @@ class PortScanner:
                     sock.close()
 
                 except error as e:
-                    sock.close()
-
                     try:
-                        service = getservbyport(port, 'tcp')
-                        print(f"Port: {port} / tcp / {service}")
+                        service = getservbyport(port, 'udp')
+                        print(f"Port: {port} / udp / {service}")
                         sock.close()
 
                     except error:
-                        try:
-                            service = getservbyport(port, 'udp')
-                            print(f"Port: {port} / udp / {service}")
-                            sock.close()
-
-                        except error:
-                            sock.close()
+                        sock.close()
 
 
     def scan_ports(self):
