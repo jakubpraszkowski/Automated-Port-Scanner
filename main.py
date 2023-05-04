@@ -3,6 +3,15 @@ from PortScanner import PortScanner
 from Save import Save
 
 
+def pick_version():
+    user_decision = input("Pick option:\n"
+                          "1. CLI version\n"
+                          "2. GUI version")
+    if user_decision == "1":
+        pass
+    elif user_decision == "2":
+        cli_user_menu()
+
 def ports(ip_range):
     user_input_ports = input_ports()
     port_scanner = PortScanner(ip_range.range_ip, user_input_ports[0], user_input_ports[1])
@@ -33,7 +42,7 @@ def input_ports():
     return user_port_range
 
 
-def user_menu():
+def cli_user_menu():
     user_decision = input("You can scan for ports using these options:\n"
                           "1. Loopback (127.0.0.1)\n"
                           "2. Default gate (192.168.0.1)\n"
@@ -62,7 +71,7 @@ def user_menu():
 
 
 def main():
-    user_menu()
+    pick_version()
 
 
 if __name__ == "__main__":
