@@ -12,6 +12,7 @@ def pick_version():
     elif user_decision == "2":
         cli_user_menu()
 
+
 def ports(ip_range):
     user_input_ports = input_ports()
     port_scanner = PortScanner(ip_range.range_ip, user_input_ports[0], user_input_ports[1])
